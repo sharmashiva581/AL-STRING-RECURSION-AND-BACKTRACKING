@@ -1,0 +1,40 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+	public static void solution(String str){
+		//write your code here
+		int n= str.length();
+		for(int sp = 0 ; sp < n ; sp++ ){
+		    for(int ep = sp ; ep < n ; ep++){
+		        String ss = str.substring(sp , ep+1);
+		        if(is_palindrome(ss) == true){
+		            System.out.println(ss);
+		        }
+		    }
+		}
+	}
+	public static boolean is_palindrome(String ss){
+	    int l = 0 ; // left idx
+	    int r = ss.length()-1; // for right idx
+	    
+	    while(l <= r){
+	        char lch = ss.charAt(l); // left character
+	        char rch = ss.charAt(r); // right character
+	        if(lch != rch){
+	            return false;
+	        }
+	        l++;
+	        r--;
+	    }
+	    return true;
+	}
+
+	public static void main(String[] args) {
+		Scanner scn = new Scanner(System.in);
+		String str = scn.next();
+		solution(str);
+	}
+
+}
