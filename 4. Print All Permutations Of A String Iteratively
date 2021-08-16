@@ -1,0 +1,45 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+	public static void solution(String str){
+		// write your code here
+		int n= str.length();
+		int tperm = factorial(n);
+		
+		for(int num=0 ; num< tperm ; num++){
+		    StringBuilder ostr = new StringBuilder(str);
+		    StringBuilder perm = new StringBuilder("");
+		    int temp = num;
+		    for(int div = n ; div>0 ; div--){
+		        int rem = temp % div;
+		         
+		         char ch = ostr.charAt(rem);
+		          perm.append(ch);
+		        ostr.deleteCharAt(rem);
+		       
+		        temp = temp / div;
+		    }
+		    System.out.println(perm);
+		}
+		
+	}
+	public static int factorial(int n){
+	    
+	    int fact = 1;
+	    
+	    for(int num = n ; num >=1 ; num--){
+	        fact = fact*num;
+	    }
+	    return fact;
+	   
+	}
+	
+	public static void main(String[] args) {
+		Scanner scn = new Scanner(System.in);
+		String str = scn.next();
+		solution(str);
+	}
+
+}
