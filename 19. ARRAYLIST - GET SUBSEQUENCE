@@ -1,0 +1,41 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        Scanner scn = new Scanner(System.in);
+        String str = scn.next();
+        
+        ArrayList<String> ans = gss(str);
+        System.out.print(ans);
+
+    }
+
+    public static ArrayList<String> gss(String str) {
+        if(str.length()==0){ // empty string has one subsequence that is empty string
+            ArrayList<String> base_ans = new ArrayList<>();
+            base_ans.add("");
+            return base_ans;
+        }
+     
+     char ch = str.charAt(0);
+     String ros = str.substring(1); // ros = rest of the string that is 'bc'
+     
+     ArrayList<String> ros_sub = gss(ros); // subsequences of bc
+     ArrayList<String> myans = new ArrayList<>();
+     
+     // when ch  don't want to come
+     for(int i=0 ; i< ros_sub.size() ; i++){
+         myans.add(ros_sub.get(i));
+     }
+     
+     // if ch wants to come in subsequence
+     for(int i=0 ; i< ros_sub.size() ; i++){
+         myans.add(ch + ros_sub.get(i));
+     }
+     
+     return myans;
+    }
+
+}
