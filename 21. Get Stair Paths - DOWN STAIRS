@@ -1,0 +1,54 @@
+import java.io.*;
+import java.util.*;
+
+public class Main { // we have written a down stair code....but also same for upstairs
+
+    public static void main(String[] args) throws Exception {
+        Scanner scn = new Scanner(System.in);
+        int stairs = scn.nextInt();
+        ArrayList<String> ans = getStairPaths(stairs);
+        System.out.println(ans);
+
+    }
+
+    public static ArrayList<String> getStairPaths(int n) {
+        if(n==0){
+            ArrayList<String> base_ans = new ArrayList<>();
+            base_ans.add(""); // bcz at 0th statir we stil have a singlr path -> stay there
+            return base_ans;
+        }
+        
+        if(n < 0){
+            ArrayList<String> base_ans = new ArrayList<>();
+            return base_ans;
+        }
+        
+        
+            ArrayList<String> pnm1 = getStairPaths(n-1); // n-1 to 0 paths
+        
+        
+            ArrayList<String> pnm2 = getStairPaths(n-2); // n-2 to 0 paths
+        
+        
+            ArrayList<String> pnm3 = getStairPaths(n-3); // n-3 to 0 paths
+        
+        
+        ArrayList<String> paths = new ArrayList<>();
+        
+        
+        for(int i=0 ; i< pnm1.size(); i++){
+         paths.add(1+ pnm1.get(i)); // will give path from n to 0 add your initial jump
+        }
+        
+         for(int i=0 ; i< pnm2.size() ; i++){
+            paths.add(2+ pnm2.get(i)); // will give path from n to 0
+        }
+        
+         for(int i=0 ; i< pnm3.size() ; i++){
+            paths.add(3+ pnm3.get(i));   // will give path from n to 0
+        }
+        
+        return paths;
+    }
+
+}
