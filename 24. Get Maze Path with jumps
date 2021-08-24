@@ -1,0 +1,62 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        Scanner scn = new Scanner(System.in);
+        int r = scn.nextInt();
+        int c= scn.nextInt();
+        
+        ArrayList<String> ans = getMazePaths(0 , 0 , r-1 , c-1);
+        System.out.println(ans);
+
+    }
+
+    // sr - source row
+    // sc - source column
+    // dr - destination row
+    // dc - destination column
+    public static ArrayList<String> getMazePaths(int sr, int sc, int dr, int dc) {
+        if(sr == dr && sc== dc){
+            ArrayList<String> base_ans = new ArrayList<>();
+            base_ans.add("");
+            return base_ans;
+        }
+        
+        if(sr > dr || sc > dc){
+          ArrayList<String> base_ans = new ArrayList<>();  
+           return base_ans;
+        }
+      
+        
+        ArrayList<String> paths = new ArrayList<>();
+        
+          // call for horizontal nebor
+        for(int i=1 ; sc+i <=dc ; i++){
+            ArrayList<String> hcall_ans = getMazePaths(sr , sc+i , dr,dc);
+            for(int j=0 ; j < hcall_ans.size() ; j++){
+                paths.add("h" + i + hcall_ans.get(j));
+            }
+        }
+        
+          // call for vertical nebor
+        for(int i=1 ; sr+i <=dr ; i++){
+            ArrayList<String> vcall_ans = getMazePaths(sr+i , sc , dr,dc);
+            for(int j=0 ; j < vcall_ans.size() ; j++){
+                paths.add("v" + i + vcall_ans.get(j));
+            }
+        }
+        
+          // call for diagonal nebor
+        for(int i=1 ; sc+i <=dc && sr+i <=dr ; i++){
+            ArrayList<String> dcall_ans = getMazePaths(sr+i , sc+i , dr,dc);
+            for(int j=0 ; j < dcall_ans.size() ; j++){
+                paths.add("d" + i + dcall_ans.get(j));
+            }
+        }
+        return paths;
+        
+    }
+
+}
