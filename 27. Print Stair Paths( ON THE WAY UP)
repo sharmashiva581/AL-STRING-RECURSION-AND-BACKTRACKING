@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Main { // DOWN STAIRS VERSION
+public class Main {                                                        // DOWN STAIRS VERSION
 
     public static void main(String[] args) throws Exception {
         Scanner scn = new Scanner(System.in);
@@ -61,3 +61,31 @@ public class Main { // CLIMB STAIRS ( ON THE WAY UP)
     }
 
 }
+
+
+                                                     ********************* // 3.  DOWN STAIRS VERSION USING FOR LOOP  **************************************************
+import java.io.*;
+import java.util.*;
+
+public class Main { // CLIMB STAIRS ( ON THE WAY UP)
+
+    public static void main(String[] args) throws Exception {
+        Scanner scn = new Scanner(System.in);
+        int n= scn.nextInt();
+        printStairPaths( n,  "" );
+
+    }
+
+    public static void printStairPaths(int n, String path ) {
+        if(n==0){
+            System.out.println(path);
+            return;
+        }
+        
+      for(int s=1 ; s <=3 && n-s >=0 ; s++){ // s = steps -> 1 ,2,3
+      printMazePaths(n-s , path + s)
+      }
+    }
+
+}
+
