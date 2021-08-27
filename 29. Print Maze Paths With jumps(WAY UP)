@@ -1,0 +1,36 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        Scanner scn = new Scanner(System.in);
+        int r= scn.nextInt();
+        int c= scn.nextInt();
+        
+        printMazePaths(0,0,r-1,c-1,"");
+
+    }
+
+    // sr - source row
+    // sc - source column
+    // dr - destination row
+    // dc - destination column
+    public static void printMazePaths(int sr, int sc, int dr, int dc, String psf) {
+        if(sc==dc && sr==dr){
+            System.out.println(psf);
+            return;
+        }
+        
+        for(int hs =1 ; sc + hs <=dc ; hs++){ // hs = horizontal steps
+            printMazePaths(sr,sc+hs,dr,dc,psf+"h"+hs);
+        }
+         for(int vs =1 ; sr + vs <=dr ; vs++){ // vs = vertical steps
+            printMazePaths(sr+vs,sc,dr,dc,psf+"v"+vs);
+        }
+         for(int ds =1 ; sc + ds <=dc && sr + ds <=dr ; ds++){// ds = diagonal steps
+            printMazePaths(sr+ds,sc+ds,dr,dc,psf+"d"+ds);
+        }
+    }
+
+}
