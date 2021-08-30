@@ -45,7 +45,7 @@ public class Main {
         for(int col = 0 ; col < chess.length ; col++){
             if(isQueenSafe(chess,row,col) == true){
                 // Place the queen at row , col index
-                chess[row][col] =1;
+                chess[row][col] =1; // 1 is showing queens position here    1== queen
                 
                 // make call to next row
                 printQueens(chess , psf + row + "-" + col + ", " , row+1);
